@@ -9,6 +9,9 @@ from markitdown import MarkItDown
 
 genai.configure(api_key=st.secrets["gemini_key"])
 
+# Get model name from secrets with fallback to default
+GEMINI_MODEL = st.secrets.get("gemini_model", "gemini-2.0-flash-thinking-exp-01-21")
+
 # Set page configuration
 st.set_page_config(
     page_title="ATS CV Checker",
@@ -260,7 +263,7 @@ Untuk kategori, gunakan kriteria berikut:
 # Function to run agent evaluation
 def run_agent(agent_name, prompt, cv_text):
     try:
-        model = genai.GenerativeModel('gemini-2.0-flash-thinking-exp-01-21')
+        model = genai.GenerativeModel(GEMINI_MODEL)
         response = model.generate_content(prompt.replace("{cv_text}", cv_text))
         
         # Extract JSON from response
@@ -311,7 +314,7 @@ def run_coordinator(results):
             optional_mistakes_result=optional_mistakes_result
         )
         
-        model = genai.GenerativeModel('gemini-2.0-flash-thinking-exp-01-21')
+        model = genai.GenerativeModel(GEMINI_MODEL)
         response = model.generate_content(coordinator_prompt)
         
         # Extract JSON from response

@@ -17,6 +17,18 @@ A multi-agent CV evaluation system built with Python, Streamlit, and Google's Ge
   - Identified shortcomings
   - Specific improvement suggestions
 
+## Configuration
+
+Create a `.streamlit/secrets.toml` file with the following configuration:
+
+```toml
+gemini_key = "your-google-api-key"
+gemini_model = "gemini-2.0-flash-thinking-exp-01-21"  # optional, defaults to gemini-2.0-flash-thinking-exp-01-21
+```
+
+- `gemini_key` (required): Your Google Gemini API key
+- `gemini_model` (optional): The Gemini model to use for evaluation. If not specified, defaults to `gemini-2.0-flash-thinking-exp-01-21`
+
 ## Installation
 
 1. Clone this repository
